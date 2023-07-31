@@ -41,7 +41,7 @@ resource "aws_security_group" "lb_security_group" {
 
 module "loadbalancer" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 8.0"
+  version = "8.7.0"
 
   name = "cap-dev-alb"
 
@@ -63,6 +63,14 @@ module "loadbalancer" {
       }
       second_instance = {
         target_id = data.aws_instances.all_running_instances.ids[1]
+        port      = 80
+      }
+      third_instance = {
+        target_id = data.aws_instances.all_running_instances.ids[2]
+        port      = 80
+      }
+      forth_instance = {
+        target_id = data.aws_instances.all_running_instances.ids[3]
         port      = 80
       }
     }
