@@ -7,7 +7,7 @@ locals {
   ec2_instance_ids = data.aws_instances.all_running_instances.ids
 }
 
-resource "aws_security_group" "lb-security-group" {
+resource "aws_security_group" "lb_security_group" {
   vpc_id = module.vpc.vpc_id
   name   = "Load Balancer Group"
   egress = [
@@ -49,12 +49,13 @@ module "loadbalancer" {
 
   vpc_id          = module.vpc.vpc_id
   subnets         = module.vpc.public_subnets
-  security_groups = [aws_security_group.lb-security-group.id]
+  security_groups = [aws_security_group.lb_security_group.id]
 
   target_groups = [{
     backend_protocol = "HTTP"
     backend_port     = 80
     target_type      = "instance"
+    # FIX ME: Explore dynamic blocks to generate repeatable targets
     targets = {
       first_instance = {
         target_id = data.aws_instances.all_running_instances.ids[0]

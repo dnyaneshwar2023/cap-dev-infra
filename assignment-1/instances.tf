@@ -1,4 +1,4 @@
-resource "aws_security_group" "instance-security-group" {
+resource "aws_security_group" "instance_security_group" {
   vpc_id = module.vpc.vpc_id
   name   = "EC2-Instance Group"
   egress = [
@@ -46,7 +46,7 @@ module "ec2_instance_1" {
   source                      = "terraform-aws-modules/ec2-instance/aws"
   name                        = "EC2-nginx-1"
   ami                         = "ami-02a89066c48741345"
-  vpc_security_group_ids      = [aws_security_group.instance-security-group.id]
+  vpc_security_group_ids      = [aws_security_group.instance_security_group.id]
   instance_type               = "t2.micro"
   subnet_id                   = module.vpc.public_subnets[0]
   associate_public_ip_address = true
@@ -61,7 +61,7 @@ module "ec2_instance_2" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   name                   = "EC2-nginx-2"
   ami                    = "ami-02a89066c48741345"
-  vpc_security_group_ids = [aws_security_group.instance-security-group.id]
+  vpc_security_group_ids = [aws_security_group.instance_security_group.id]
 
   instance_type               = "t2.micro"
   subnet_id                   = module.vpc.public_subnets[1]
