@@ -6,3 +6,7 @@ variable "default_tags" {
 variable "instance_ami" {
   type = string
 }
+
+variable "instance_type" {
+  type = string
+}

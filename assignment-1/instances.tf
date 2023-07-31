@@ -47,7 +47,7 @@ module "ec2_instance_1" {
   name                        = "EC2-nginx-1"
   ami                         = var.instance_ami
   vpc_security_group_ids      = [aws_security_group.instance_security_group.id]
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   subnet_id                   = module.vpc.public_subnets[0]
   associate_public_ip_address = true
 
@@ -63,7 +63,7 @@ module "ec2_instance_2" {
   ami                    = var.instance_ami
   vpc_security_group_ids = [aws_security_group.instance_security_group.id]
 
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   subnet_id                   = module.vpc.public_subnets[1]
   associate_public_ip_address = true
 
@@ -79,7 +79,7 @@ module "ec2_instance_3" {
   ami                    = var.instance_ami
   vpc_security_group_ids = [aws_security_group.instance_security_group.id]
 
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   subnet_id                   = module.vpc.private_subnets[0]
   associate_public_ip_address = true
 
@@ -96,7 +96,7 @@ module "ec2_instance_4" {
   ami                    = var.instance_ami
   vpc_security_group_ids = [aws_security_group.instance_security_group.id]
 
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   subnet_id                   = module.vpc.private_subnets[1]
   associate_public_ip_address = true
 
