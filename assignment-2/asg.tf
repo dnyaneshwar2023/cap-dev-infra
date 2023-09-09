@@ -8,4 +8,5 @@ resource "aws_autoscaling_group" "autoscaler" {
   launch_template {
     id = aws_launch_template.instances_launch_template.id
   }
+  target_group_arns = [aws_alb_target_group.target_group.arn]
 }
