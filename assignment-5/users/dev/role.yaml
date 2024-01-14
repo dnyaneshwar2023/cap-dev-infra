@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole # Created cluster role since it can be used if needs permission in additional namespace
+metadata:
+  name: dev-user-role
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "deployments", "services", "secrets", "endpoints"] # this list can be longer
+  verbs: ["get", "watch", "list", "update", "create", "delete"] # not totally correct
